@@ -16,9 +16,11 @@ RUN echo 'deb http://archive.ubuntu.com/ubuntu/ focal main restricted' >> /etc/a
 
 # Setup for reading Health Insurance ID Card
 # 健保卡網路服務註冊－環境檢測(Chrome、FireFox、Opera、Edge) - https://cloudicweb.nhi.gov.tw/cloudic/system/SMC/mEventesting.htm
-RUN wget --no-check-certificate -O /tmp/mLNHIICC_Setup.tar.gz https://cloudicweb.nhi.gov.tw/cloudic/system/SMC/mLNHIICC_Setup.20220110.tar.gz \
+RUN wget --no-check-certificate -O /tmp/CMS_mNHIICC_Setup.Linux.zip https://med.nhi.gov.tw/CA2/CacheFile.aspx?AttName=CMS_mNHIICC_Setup.Linux.zip \
  && mkdir -p /tmp/mLNHIICC_Setup \
- && tar xvf /tmp/mLNHIICC_Setup.tar.gz -C /tmp/mLNHIICC_Setup  --strip-components=1 \
+ && cd /tmp \
+ && unzip /tmp/CMS_mNHIICC_Setup.Linux.zip \
+ && tar xvf /tmp/mLNHIICC_Setup.20220530.tar.gz -C /tmp/mLNHIICC_Setup  --strip-components=1 \
  && cd /tmp/mLNHIICC_Setup && ./Install
 
 RUN rm -rf /tmp/* /var/tmp/*
